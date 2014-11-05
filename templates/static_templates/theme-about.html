@@ -1,1 +1,111 @@
-Hola About
+<%! from django.core.urlresolvers import reverse %>
+<%namespace name='static' file='/static_content.html'/>
+
+<%inherit file="/main.html" />
+
+<%block name="title"><title>Acerca de UPEx</title></%block>
+
+<%block name="js_extra">
+  <script type="text/javascript">
+    $(function() {
+      $('section.message').hide();
+      $('#about-menu a').removeClass('active');
+      window.scrollTo(0,0);
+      
+      if ( document.location.href.indexOf('#faq') > -1 ) {
+        $('section#faq').show();
+        $('#about-menu a.faq').addClass('active');
+      } else if ( document.location.href.indexOf('#contact') > -1 ) {
+        $('section#contact').show();
+        $('#about-menu a.contact').addClass('active');
+      } else if ( document.location.href.indexOf('#careers') > -1 ) {
+        $('section#careers').show();
+        $('#about-menu a.careers').addClass('active');
+      } else {
+        $('section#about').show();
+        $('#about-menu a.about').addClass('active');
+      }
+      
+      $('#about-menu a').click(function(event) {
+        event.preventDefault();
+        $('#about-menu a').removeClass('active');
+        $(this).addClass('active');
+        var clickId = "section" + $(this).attr('href');
+        $('section.message').hide();
+        $(clickId).show();
+      });
+    });
+  </script>
+</%block>
+
+<section class="container about" style="width: auto;">
+  <nav id="about-menu">
+    <a href="#about" class="about active">Acerca de</a>
+    <a href="#faq" class="faq">Preguntas Frecuentes</a>
+  </nav>
+
+  <section class="vision">
+
+## About Section ##
+    <section class="message left" id="about">
+      <div class="photo">
+        <img src="${static.url('themes/stanford/images/stanford-S-logo.png')}" />
+      </div>
+      <article>
+        <h2>Acerca de <span class="edx">UPEx</span></h2>
+        <p>Es la plataforma MOOC que la Universidad de Postgrado del Estado
+          gestiona para impartir cursos masivos del más alto nivel académico. UPEx
+          está desarrollado bajo tecnología "Open edX", fundada por el MIT y la
+          universidad de Harvard, con el fin de poner la más alta tecnología al
+          servicio de la educación.
+        </p>
+
+        <p>Contribuirá a garantizar la soberanía cognitiva, tecnológica y cultural
+        de los pueblos de el Ecuador, impulsando la construcción de la sociedad
+        del conocimiento, la innovación y la creatividad, y liberando todos los
+        contenidos producidos desde esta institución pública con licencias
+        Copyleft que garanticen libre acceso al conocimiento, siguiendo las
+        directrices del Plan Nacional del Buen Vivir.</p>
+
+        <p>UPEx es también un regalo del Ecuador al mundo, una forma de compartir
+        con nuestra región y con el resto del planeta nuestra producción
+        académica y técnica, nuestra historia y nuestro presente político, como
+        un ejemplo y una invitación a construir de manera global un presente
+        donde la ciencia y la libertad del conocimiento sean el motor de la
+        transformación que necesitamos.
+        </p>
+      </article>
+      <hr class="fade-right-hr-divider">
+    </section>
+
+
+## FAQ Section ##
+    <section class="message left" id="faq">
+      <div class="photo">
+        <img src="${static.url('themes/stanford/images/fqa.png')}"  />
+      </div>
+      <article>
+        <h2>Preguntas Frecuentes</h2>
+        <p><strong>¿Qué es UPEx?</strong></p>
+        <p>Es la plataforma MOOC que la Universidad de Postgrado del Estado gestiona para impartir cursos masivos  del más alto nivel académico.</p>
+
+        <p><strong>¿Qué es MOOC?</strong></p>
+        <p>MOOC viene de acrónimo en inglés (massive open online course) y traducido  al español como cursos masivos, abiertos y en línea. Término MOOC acuñado en el año 2008 por Dave Cormier cuando el número de inscritos a su curso «Connectivism and Connective Knowledge (CCK08)» aumentó a casi dos mil trescientos (2300) estudiantes.
+        </p>
+        <p><strong>Que consigo con UPEx</strong></p>
+          <ul>
+            <li><p>Democratizar la Enseñanza (se llega a todos).</p></li>
+            <li><p>Inclusión.</p></li> 
+            <li><p>Diversidad.</p></li> 
+            <li><p>Aprendizaje a su propio RITMO.</p></li> 
+            <li><p>Acceso a REDES sociales y de conocimiento.</p></li> 
+            <li><p>Permite la Creatividad y la Innovación.</p></li> 
+            <li><p>Crecimiento profesional.</p></li>
+            </ul>
+        </p>
+      </article>
+      <hr class="fade-right-hr-divider">
+    </section>
+  </section>
+
+</section>
