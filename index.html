@@ -1,0 +1,166 @@
+ <%! from django.utils.translation import ugettext as _ %>
+
+<%! from django.core.urlresolvers import reverse %>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+
+<%! from microsite_configuration import microsite %>
+
+<%
+  homepage_overlay_html = microsite.get_value('homepage_overlay_html')
+
+  show_homepage_promo_video = microsite.get_value('show_homepage_promo_video', True)
+  homepage_promo_video_youtube_id = microsite.get_value('homepage_promo_video_youtube_id', "2m5zbShDcDA")
+
+  show_partners = microsite.get_value('show_partners', True)
+
+%>
+
+<section class="home">
+
+  <header>
+    <section id="slideshow">
+      <div class="html_carousel">
+       <div id="slider">
+              <div class="slide">
+                  <img src="${static.url('themes/stanford/images/sliderimage1.jpg')}"/>
+              </div>
+              
+              <div class="slide">
+                  <img src="${static.url('themes/stanford/images/sliderimage2.jpg')}"/>
+              </div>
+              
+              <div class="slide">
+                   <img src="${static.url('themes/stanford/images/sliderimage3.jpg')}"/>
+              </div>
+              
+              <div class="slide">
+                   <img src="${static.url('themes/stanford/images/sliderimage4.jpg')}"/>
+              </div>
+  
+       </div>         
+      </div>
+    </section>
+
+    <div class="outer-wrapper">
+      <div class="title">
+        <hgroup>
+          % if homepage_overlay_html:
+            ${homepage_overlay_html}
+          % else:
+            % if self.stanford_theme_enabled():
+              <h1>${"Cursos libres de UPEx - <strong>{university_name}</strong>".format(university_name="IAEN")}</h1>
+            % else:
+              <h1>${_("The Future of Online Education")}</h1>
+            % endif
+            <h2>${_("Disponibles en cualquier parte del mundo, en todo momento.")}</h2>
+          % endif
+        </hgroup>
+
+        ## Disable social buttons for non-edX sites
+        % if not self.theme_enabled():
+          <section class="actions">
+            <div class="main-cta">
+              <a href="#signup-modal" id="signup_action" class="find-courses" rel="leanModal">${_("Sign Up")}</a>
+            </div>
+
+            <div class="secondary-actions">
+              <div class="social-sharing">
+                <div class="sharing-message">${_("Stay up to date with all {platform_name} has to offer!").format(platform_name=settings.PLATFORM_NAME)}</div>
+                <a href="https://twitter.com/edXOnline" class="share">
+                  <img src="${static.url('images/social/twitter-sharing.png')}">
+                </a>
+                <a href="http://www.facebook.com/EdxOnline" class="share">
+                  <img src="${static.url('images/social/facebook-sharing.png')}">
+                </a>
+                <a href="https://plus.google.com/108235383044095082735/posts" class="share">
+                  <img src="${static.url('images/social/google-plus-sharing.png')}">
+                </a>
+              </div>
+            </div>
+          </section>
+          % endif
+      </div>
+
+      % if show_homepage_promo_video:
+        <a href="#video-modal" class="media" rel="leanModal">
+          <div class="hero">
+            <div class="play-intro"></div>
+          </div>
+        </a>
+      % endif
+    </div>
+  </header>
+  <section class="container">
+    <section class="highlighted-courses">
+
+      % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+        <section class="courses">
+            <ul class="courses-listing">
+            %for course in courses:
+              <li class="courses-listing-item">
+                <%include file="course.html" args="course=course" />
+              </li>
+            %endfor
+            </ul>
+        </section>
+      % endif
+
+    </section>
+  </section>
+</section>
+## contenido del nuevo cuerpo
+<div id="contenido">
+  <div id="contenido-interno">
+    <img src="${static.url('themes/stanford/images/diseno.png')}"  alt="UPEx" width="400" height="300" />
+    <img src="${static.url('themes/stanford/images/multimedia.png')}" alt="upex_ec"width="400" height="300"/>
+    ##<a href="https://plus.google.com/u/0/116650887242648660285/posts">para link</a>
+    <img src="${static.url('themes/stanford/images/virtual.png')}" alt="UPEx" width="400" height="300"/>
+  </div>
+</div>
+  ## ---------------------------------
+
+<section id="video-modal" class="modal home-page-video-modal video-modal">
+  <div class="inner-wrapper">
+    <%
+      youtube_video_id = homepage_promo_video_youtube_id
+      if self.stanford_theme_enabled():
+        youtube_video_id = "2m5zbShDcDA"
+    %>
+    <iframe width="640" height="360" src="//www.youtube.com/embed/${youtube_video_id}?showinfo=0" frameborder="0" allowfullscreen></iframe>
+  </div>
+</section>
+
+<%block name="js_extra">
+   <script type="text/javascript">
+      $(window).load(function() {
+         if(getParameterByName('next')) {
+              $('#login').trigger("click");
+         }
+      })
+   </script>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+  ## NOTE: This won't work in production, because anonymous views are cached, so it will
+  ## show either with or without this extra js for 3 minutes at a time.
+<script type="text/javascript">
+  $(window).load(function() {$('#signup_action').trigger("click");});
+</script>
+% endif
+
+<script type="text/javascript">
+    $("#slider").carouFredSel({
+    responsive  : true,
+    scroll    : {
+      fx      : "crossfade",
+      easing    : "swing",
+      duration  : 800
+      },
+    items   : {
+      visible   : 1,
+      height    : "45%"
+      }
+    });
+</script>
+
