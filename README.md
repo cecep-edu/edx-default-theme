@@ -6,18 +6,20 @@ Hemos organizado el árbol para imitar la estructura de directorios de la base d
 
 ![Alt text](/default_theme_screenshot.jpg?raw=true "Open edX Default Theme Screenshot")
 
+
 Theme Authoring
 ===============
-To customize your theme:
-- Fork this repository.
-- Clone it into the theme directory next to your edx-platform directory and rename the theme directory to your new theme's name.
-- Upload your own image assets.
-- Edit the .scss file in static/sass/ and rename the file with your theme's name.
-- Edit the lms.envs.json file in edx-platform and set 'USE_CUSTOM_THEME' to true, and 'THEME_NAME' to your theme's name.
+
+Para personalizar el tema:
+
+contener este repositorio.
+Clonar en el directorio del tema junto a su directorio edx-plataforma y cambiar el nombre del directorio del tema al nombre de su nuevo tema.
+Sube tus propios recursos de imagen.
+Edite el archivo .scss en estático / sass / y cambiar el nombre del archivo con el nombre de su tema.
+Edite el archivo lms.envs.json en edx-plataforma y establecer 'USE_CUSTOM_THEME' true, y 'THEME_NAME' al nombre de su tema.
 
 
 License
 =======
 
-The code in this repo is licensed under the Apache 2.0 License.
-See [LICENSE.txt](LICENSE.txt) for more info.
+El código de este repo está licenciado bajo la licencia Apache 2.0. Ver LICENSE.txt para obtener más información.
