@@ -1,0 +1,105 @@
+<%! from django.utils.translation import ugettext as _ %>
+
+<%! from django.core.urlresolvers import reverse %>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+
+<%! from microsite_configuration import microsite %>
+
+<%
+  homepage_overlay_html = microsite.get_value('homepage_overlay_html')
+
+  show_homepage_promo_video = microsite.get_value('show_homepage_promo_video', True)
+  homepage_promo_video_youtube_id = microsite.get_value('homepage_promo_video_youtube_id', "2m5zbShDcDA")
+
+  show_partners = microsite.get_value('show_partners', True)
+
+%>
+
+    <!-- Banner -->
+    <section id="banner">
+      <div class="inner">
+	<h2>formaX</h2>
+	<p>Bienvenidos a formaX, <br />
+	  la <br />
+	  Educación del Futuro</p>
+	<ul class="actions">
+	  <li><a href="#" class="button fit special">Ingresar</a></li>
+          <li><a href="#" class="button fit">Registrarse</a></li>
+	</ul>
+      </div>
+      <a href="#two" class="more scrolly">Ver cursos</a>
+    </section>
+
+    <!-- One -->
+    
+    <!-- One -->
+    <section id="two" class="wrapper style1 special">
+      <div class="inner">
+	<header class="major">
+	  <h2>Elija aprender, con tan solo registrarse</h2>
+	  
+	</header>
+	
+      </div>
+    </section>
+    <!-- Two -->
+    <section id="one" class="wrapper alt style2">
+      <section class="spotlight">
+	<div class="image"><img src="${ static.url('themes/default/images/pic01.jpg') }" alt="" /></div><div class="content">
+	  <h2>Herramientas organizacionales para despliegue de la seguridad de la información</h2>
+	  <p>El presente curso ofrece herramientas organizacionales para la gestión de proyectos, que permiten planear, organizar, asegurar y coordinar recursos y personas para cumplir los objetivos , entregables y crietrios de exitos de los proyectos.</p>
+	</div>
+        
+        
+        
+        
+      </section>
+      <section class="spotlight">
+	<div class="image"><img src="${ static.url('themes/default/images/pic02.jpg') }" alt="" /></div><div class="content">
+	  <h2>Normativa de seguridad para implementación SGSI</h2>
+	  <p>El presente curso ofrece herramientas organizacionales para la gestión de proyectos, que permiten planear, organizar, asegurar y coordinar recursos y personas para cumplir los objetivos , entregables y crietrios de exitos de los proyectos.</p>
+	</div>
+        
+        
+      </section>
+      <section class="spotlight">
+	<div class="image"><img src="${ static.url('themes/default/images/pic03.jpg') }" alt="" /></div><div class="content">
+	  <h2>Introducción a las plataformas MOOC</h2>
+	  <p>El presente curso ofrece herramientas organizacionales para la gestión de proyectos, que permiten planear, organizar, asegurar y coordinar recursos y personas para cumplir los objetivos , entregables y crietrios de exitos de los proyectos.</p>
+	</div>
+        
+        
+        
+      </section>
+      
+      <!-- One -->
+      <section id="two" class="wrapper style1 special">
+	<div class="inner">
+	  <header class="major">
+	    <h2>A cerca de nosotros</h2>
+	    <p>Es la plataforma MOOC que la Universidad de Postgrado del Estado a traves de FORMA EP gestiona para impartir cursos masivos del más alto nivel académico. formaX está desarrollado bajo tecnología "Open edX", fundada por el MIT y la universidad de Harvard, con el fin de poner la más alta tecnología al servicio de la educación.</p>
+            <p>Contribuirá a garantizar la soberanía cognitiva, tecnológica y cultural de los pueblos de el Ecuador, impulsando la construcción de la sociedad del conocimiento, la innovación y la creatividad, y liberando todos los contenidos producidos desde esta institución pública con licencias Copyleft que garanticen libre acceso al conocimiento, siguiendo las directrices del Plan Nacional del Buen Vivir.</p>
+            <p>formaX es también un regalo del Ecuador al mundo, una forma de compartir con nuestra región y con el resto del planeta nuestra producción académica y técnica, nuestra historia y nuestro presente político, como un ejemplo y una invitación a construir de manera global un presente donde la ciencia y la libertad del conocimiento sean el motor de la transformación que necesitamos.</p>
+	  </header>
+	  
+	</div>
+      </section>
+      
+
+      
+      <!-- CTA -->
+      <section id="cta" class="wrapper style4">
+	<div class="inner">
+	  <header>
+	    <h2>De clic, para iniciar seción o registrarse</h2>
+	    
+	  </header>
+	  <ul class="actions vertical">
+	    <li><a href="#" class="button fit special">Registrarse</a></li>
+	    <li><a href="#" class="button fit">Iniciar seción</a></li>
+	  </ul>
+	</div>
+      </section>
+
+
