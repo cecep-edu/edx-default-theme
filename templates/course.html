@@ -1,0 +1,23 @@
+<%namespace name='static' file='static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
+from courseware.courses import course_image_url, get_course_about_section
+%>
+<%page args="course" />
+
+<section id="${course.id | h}" class="spotlight">
+  %if course.is_newish:
+    <span class="status">${_("New")}</span>
+  %endif
+  <a href="${reverse('about_course', args=[course.id.to_deprecated_string()])}">
+  <div class="image"><img src="${course_image_url(course)}" alt="${course.display_number_with_default | h} ${get_course_about_section(course, 'title')} Cover Image" /></div>
+  </a>
+  <div class="content">
+    <h2>${course.display_number_with_default | h} ${get_course_about_section(course, 'title')}</h2>
+    <p style="color: #FFF;">${get_course_about_section(course, 'short_description')}</p>
+  </div>
+</section>
+
+
+
